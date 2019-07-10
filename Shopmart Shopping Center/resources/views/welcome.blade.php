@@ -83,7 +83,7 @@
     
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="('#')">Contact</a>
