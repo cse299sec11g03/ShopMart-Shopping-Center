@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in as buyer!
+                    You are logged in!
                 </div>
             </div>
         </div>
