@@ -86,7 +86,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link" href="('#')">Contact</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pre-Order</a>
@@ -112,6 +112,51 @@
   </div>
 </nav> 
     </header>
+    
+        <div class="container mt-2">
+            <div class="row-12">
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 1</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 2</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 1</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 2</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 1</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 2</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 1</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 2</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 1</p>    
+                </div>
+                <div class="col-6 text-center float-left bg-light m2">
+                    <h1>product</h1>
+                    <p>This is product 2</p>    
+                </div>
+            </div>
+        </div>
         <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
