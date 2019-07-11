@@ -41,29 +41,27 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul>
-                        
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="nav-item active">
+                            <li class="nav-item active float-left">
                                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item float-left">
                                 <a class="nav-link" href="#">Pre-Order</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item float-left">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item float-left">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                                 
-                        <li class="nav-item">
+                        <li class="nav-item float-left">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         
