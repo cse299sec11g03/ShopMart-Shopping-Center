@@ -82,24 +82,24 @@
     <a class="navbar-brand" href="#"><button type="button" class="btn btn-secondary">SHOPMART</button></a>
     
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
+      <li class="nav-item float-left">
         <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item float-left">
         <a class="nav-link" href="('#')">Contact</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item float-left">
         <a class="nav-link" href="#">Pre-Order</a>
       </li>
-      <li class="nav-item">            
+      <li class="nav-item float-left">            
             @if (Route::has('login'))
                     @auth
-                        <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                        <a class="nav-link float-left" href="{{ url('/home') }}">Home</a>
                     @else
                         <a class="nav-link float-left" href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link float-left" href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
             @endif
@@ -113,47 +113,65 @@
 </nav> 
     </header>
     
-        <div class="container mt-2">
+        <div class="container mt-4 mb-4">
             <div class="row-12">
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 1</p>    
+                    <p>This is product 1</p>
+                    <a href="">Buy</a>    
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 2</p>    
+                    <p>This is product 2</p> 
+                    <a href="">Buy</a>    
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 1</p>    
+                    <p>This is product 1</p>
+                    <a href="">Buy</a>     
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 2</p>    
+                    <p>This is product 2</p>
+                    <a href="">Buy</a>     
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 1</p>    
+                    <p>This is product 1</p>
+                    <a href="">Buy</a>     
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 2</p>    
+                    <p>This is product 2</p> 
+                    <a href="">Buy</a>    
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 1</p>    
+                    <p>This is product 1</p>
+                    <a href="">Buy</a>     
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 2</p>    
+                    <p>This is product 2</p>
+                    <a href="">Buy</a>     
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 1</p>    
+                    <p>This is product 1</p>
+                    <a href="">Buy</a>     
                 </div>
-                <div class="col-6 text-center float-left bg-light m2">
+                <div class="col-6 text-center float-left bg-light m2 mb-2">
                     <h1>product</h1>
-                    <p>This is product 2</p>    
+                    <p>This is product 2</p> 
+                    <a href="">Buy</a>    
+                </div>
+            </div>
+            <div class="row-12 mt-4">
+                <div class="col-6 float-left text-center mt-2">
+                    <h1>This is my portal</h1>
+                </div>
+                <div class="col-6 float-left text-center mt-2">
+                    <h1>This is your portal</h1>
                 </div>
             </div>
         </div>
