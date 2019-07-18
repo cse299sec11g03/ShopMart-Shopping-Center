@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% include 'jumbotron.html' %}
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-3 p-5">
+                <a href="{{ url_for('category_products', category_id=category.ID) }}"><h4>{{ category.Name }}</h4></a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            {% for product in all_products %}
+            <div class="col-3 p-5">
+                <img class="img-fluid" src="{{ url_for('static', filename='images/product-placeholder.jpg') }}">
+                <h6 class="mt-3">{{ product['product_name'] }}</h6>
+                <p><b>$ {{ product['product_price'] }}</b></p>
+                <p>Seller : {{ product['seller'] }}</p>
+                <p class="small">{{ product['product_description'] }}</p>
+                {% set product_id = product['product_id'] %}
+                <a class="btn btn-primary" href="{{ url_for('buy_now', product_id=product_id) }}">Buy now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
