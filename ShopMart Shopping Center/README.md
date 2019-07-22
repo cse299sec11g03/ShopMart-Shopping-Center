@@ -1,2 +1,2 @@
-# buyNsell
-Buy and sell web application made with flask. 
+# ShopMart-Shopping-Center
+This is an E-Commerce site for buying and selling products and more. 
