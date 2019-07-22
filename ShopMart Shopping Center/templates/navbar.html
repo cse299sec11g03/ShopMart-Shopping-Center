@@ -1,10 +1,10 @@
 <section class="">
 
     <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
+      <div class="container logo">
         <a class="navbar-brand" href="{{url_for('home')}}">
           <!-- <img class="logo" height="35px" src="{{url_for('static',filename='images/logo_gray.png')}}"> -->
-          <h1><i class="fas fa-shopping-bag"></i> Shopmart</h1>
+          <h1 class="text-danger "><i class="fas fa-shopping-bag text-primary "></i> <span class="text-success">Shop</span>mart</h1>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -12,10 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{{url_for('home')}}"><i class="fas fa-home"> Home</i> <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-info" href="{{url_for('home')}}"><i class="fas fa-home"> Home</i> <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-book"> Pre-Order</i></a>
+            <li class="nav-item active">
+              <a class="nav-link text-info" href="#"><i class="fas fa-book"> Pre-Order</i></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link text-info" href="{{url_for('about')}}"><i class="fas fa-book"> About</i></a>
             </li>
 
           </ul>
@@ -23,8 +26,8 @@
             {% if current_user.is_authenticated %}
               <a href="{{ url_for('dashboard') }}"><i class="fas fa-user-alt"> {{ current_user.FullName }}</i></a>
             {% else %}
-              <a class="button_default" href="{{url_for('login')}}"><i class="fas fa-unlock-alt"> Login</i></a>
-              <a class="button_default" href="{{url_for('register')}}"><i class="fas fa-user-plus"> Register</i></a>
+              <a class="button_default text-info" href="{{url_for('login')}}"><i class="fas fa-unlock-alt"> Login</i></a>
+              <a class="button_default text-info" href="{{url_for('register')}}"><i class="fas fa-user-plus"> Register</i></a>
             {% endif %}
           </span>
         </div>
