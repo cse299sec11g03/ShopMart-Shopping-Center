@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-8">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome!! you're Successfully Login as an Admin.</p>
+            </div>
+            <div class="col-4">
+                <h3>{{ current_user.FullName }}</h3>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
