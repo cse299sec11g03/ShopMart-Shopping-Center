@@ -129,7 +129,10 @@ def dashboard():
         return url_for('home')
 
 
+##########################################
+#Social Networking system
 
+##################################
 # ABOUT US PAGE
 @app.route('/about')
 def about():
