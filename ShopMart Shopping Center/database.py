@@ -18,7 +18,7 @@ class Users(Base, UserMixin):
     ID = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     FullName = Column(String(30), nullable=False)
     PhoneNumber = Column(String(15), nullable=False, unique=True)
-    UserType = Column(String(10), nullable=False, default='buyer')
+    UserType = Column(String(10), nullable=False,)
     EmailAddress = Column(String(40), nullable=False, unique=True)
     Password = Column(String(255), nullable=False)
     CreatedDate = Column(DateTime, default=datetime.datetime.utcnow)
@@ -27,8 +27,8 @@ class Users(Base, UserMixin):
         return self.ID
 
 
-
-# Stores Product
+# Course entity defines here
+# Stores course name and description
 class Product(Base):
     __tablename__ = 'products'
 
@@ -40,6 +40,26 @@ class Product(Base):
     Seller = Column(Integer, ForeignKey(Users.ID))
     Users = relationship(Users)
     Date = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+class Order(Base):
+    __tablename__ = 'orders'
+
+    ID = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    ProductName = Column(String(100), nullable=False, unique=False)
+    ReceiverName = Column(String(100), nullable=False, unique=False)
+    PhoneNumber = Column(String(15), nullable=False, unique=False)
+    Address = Column(String(300), nullable=False)
+    Date = Column(DateTime, default=datetime.datetime.utcnow)
+
+
+# Categories
+class Category(Base):
+    __tablename__ = 'categories'
+
+    ID = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
+    Name = Column(String(100), nullable=False, unique=True)
+
 
 # Always stay at the end of the file
 engine = create_engine('sqlite:///Shopmart.db')

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <h1><i class="fas fa-shopping-bag"> Place the order</i></h1>
+        <p>Fill all the input field</p>
+        <div class="row">
+            <div class="col-6">
+                <h3>Delivery address</h3>
+                <form method="POST" action="{{ url_for('buy_now', product_id=product.ID)}}">
+                        {{ order_form.csrf_token }}
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Receiver name</label>
+                        {{ order_form.Name(class='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Receiver Address</label>
+                        {{ order_form.Address(class='form-control') }}
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Receiver Phone</label>
+                        {{ order_form.Phone(class='form-control') }}
+                    </div>
+                    {{ order_form.Submit(class='btn btn-primary') }}
+                </form>
+            </div>
+            <div class="col-6">
+                <h3>{{ product.ProductName }}</h3>
+                <h6>Price: {{ product.Price }}</h6>
+                <p class="small col-5">{{ product.ProductDescription }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

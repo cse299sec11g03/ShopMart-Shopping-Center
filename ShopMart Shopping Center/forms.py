@@ -49,4 +49,3 @@ class DeliveryAddressForm(FlaskForm):
     Address = TextAreaField("",validators=[InputRequired(), Length(min=4, max=300)], render_kw={"placeholder": "Address"})
     Phone = IntegerField("", validators=[InputRequired()], render_kw={"placeholder": "Phone"})
     Submit = SubmitField("Done")
-

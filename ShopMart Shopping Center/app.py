@@ -16,13 +16,12 @@ from database import *
 import PyPDF2
 
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
 
 ##################################
-# Database Connection
-engine = create_engine('sqlite:///Shopmart.db')
+
+engine = create_engine('sqlite:///buyNsell.db')
 Base.metadata.bind = engine
 
 # Creates the session
@@ -107,7 +106,9 @@ def login():
     return render_template('login.html', login_form = login_form, email_subscribe_form = email_subscribe_form)
 
 
-# Define User dashboard
+# User Dashboard
+# Uses the is_teacher() function to identify the user type
+# and redirect to the target dashboard
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -184,7 +185,7 @@ def add_category():
     else:
         return 'Not allowed'
 
-
+# Delete Product
 @app.route('/delete_category/<int:category_id>', methods=['GET', 'POST'])
 @login_required
 def delete_category(category_id):
@@ -197,7 +198,7 @@ def delete_category(category_id):
         return 'Access deined'
 
 
-# Course preview
+# Product preview
 @app.route('/product_preview')
 def product_preview():
     email_subscribe_form = EmailSubscribeForm()
@@ -218,10 +219,6 @@ def buy_now(product_id):
     return render_template('buy_now.html',order_form=order_form, product=the_product)
 
 
-##########################################
-#Social Networking system
-
-##################################
 # ABOUT US PAGE
 @app.route('/about')
 def about():
@@ -232,6 +229,11 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+@app.route('/thank_you')
+def thank_you():
+    return render_template('thank_you.html')
 
 
 # Homepage
