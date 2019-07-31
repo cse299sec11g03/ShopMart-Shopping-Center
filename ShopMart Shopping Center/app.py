@@ -16,6 +16,7 @@ from database import *
 import PyPDF2
 
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
 
@@ -117,16 +118,104 @@ def dashboard():
         return render_template('buyer_dashboard.html')
 
     elif current_user.UserType == 'seller':
-        return render_template('seller_dashboard.html')
-        
-    elif current_user.UserType == 'Caarer':
-        return render_template('caarer_dashboard.html')
-        
+        products = session.query(Product).filter_by(Seller=current_user.ID).all()
+        return render_template('seller_dashboard.html', products=products)
     elif current_user.UserType == 'admin':
-        return render_template('admin_dashboard.html')
+        category_form = CategoryForm()
+        categories = session.query(Category).all()
+        orders = session.query(Order).all()
+        products = session.query(Product).all()
+
+        all_products = []
+        for product in products:
+            single_product = {}
+            print(product.Seller)
+            seller = session.query(Users).filter_by(ID=product.Seller).first()
+            seller_name = seller.FullName
+            print(seller.FullName)
+            single_product = {'seller' : seller_name,'product_id' : product.ID,'product_name' : product.ProductName, 'product_description': product.ProductDescription, 'product_price' : product.Price }
+            print(single_product)
+            all_products.append(single_product)
+
+        return render_template('admin_dashboard.html',category_form=category_form,categories=categories,orders=orders, all_products=all_products)
     else:
         flash('Access Denied')
         return url_for('home')
+
+
+# Add product only allowed for seller
+@app.route('/add_product', methods=['GET', 'POST'])
+@login_required
+def add_product():
+    if current_user.UserType == 'seller':
+        product_form = ProductForm()
+        product_form.Category.choices = [(category.Name, category.Name) for category in session.query(Category).all()]
+        if product_form.validate_on_submit():
+            newProduct = Product(ProductName=product_form.ProductName.data, ProductDescription=product_form.ProductDescription.data, Category=product_form.Category.data, Price=product_form.Price.data, Seller=current_user.ID)
+            session.add(newProduct)
+            session.commit()
+            return redirect(url_for('dashboard'))
+        else:
+            print('Validation failed')
+            return render_template('add_product.html', product_form=product_form)
+    else:
+        return 'Access denied'
+
+
+@app.route('/category_products/<int:category_id>', methods=['GET', 'POST'])
+def category_products(category_id):
+    the_category = session.query(Category).filter_by(ID=category_id).first()
+    products = session.query(Product).filter_by(Category=the_category.Name).all()
+    return render_template('products_by_category.html', products=products)
+
+
+# Add category
+@app.route('/add_category', methods=['GET', 'POST'])
+def add_category():
+    if current_user.UserType == 'admin':
+        category_form = CategoryForm()
+        if category_form.validate_on_submit():
+            newCategory = Category(Name = category_form.Name.data)
+            session.add(newCategory)
+            session.commit()
+            return redirect(url_for('dashboard'))
+        else:
+            return render_template('add_category.html', category_form=category_form)
+    else:
+        return 'Not allowed'
+
+
+@app.route('/delete_category/<int:category_id>', methods=['GET', 'POST'])
+@login_required
+def delete_category(category_id):
+    if current_user.UserType == 'admin':
+        the_category = session.query(Category).filter_by(ID=category_id).first()
+        session.delete(the_category)
+        session.commit()
+        return redirect(url_for('dashboard'))
+    else:
+        return 'Access deined'
+
+
+# Course preview
+@app.route('/product_preview')
+def product_preview():
+    email_subscribe_form = EmailSubscribeForm()
+    return render_template('course_preview.html', email_subscribe_form=email_subscribe_form)
+
+
+# BUY NOW
+@app.route('/buy_now/<int:product_id>', methods=['GET', 'POST'])
+def buy_now(product_id):
+    order_form = DeliveryAddressForm()
+    the_product = session.query(Product).filter_by(ID=product_id).first()
+
+    if order_form.validate_on_submit():
+        new_order = Order(ProductName=the_product.ProductName, ReceiverName=order_form.Name.data, PhoneNumber=order_form.Phone.data, Address=order_form.Address.data)
+        session.add(new_order)
+        session.commit()
+        return redirect(url_for('thank_you'))
+    return render_template('buy_now.html',order_form=order_form, product=the_product)
 
 
 ##########################################
@@ -145,9 +234,24 @@ def contact():
     return render_template('contact.html')
 
 
+# Homepage
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Find categories form database
+    categories = session.query(Category).all()
+    products = session.query(Product).all()
+    all_products = []
+    for product in products:
+        single_product = {}
+        print(product.Seller)
+        seller = session.query(Users).filter_by(ID=product.Seller).first()
+        seller_name = seller.FullName
+        print(seller.FullName)
+        single_product = {'seller' : seller_name,'product_id' : product.ID,'product_name' : product.ProductName, 'product_description': product.ProductDescription, 'product_price' : product.Price }
+        print(single_product)
+        all_products.append(single_product)
+
+    return render_template('index.html', categories=categories, all_products=all_products)
 
 
 
