@@ -230,11 +230,14 @@ def about():
 def contact():
     return render_template('contact.html')
 
-
+#thank you after shopping
 @app.route('/thank_you')
 def thank_you():
     return render_template('thank_you.html')
 
+@app.route('/preOrder')
+def preOrder():
+    return render_template('preOrder.html')
 
 # Homepage
 @app.route('/')
