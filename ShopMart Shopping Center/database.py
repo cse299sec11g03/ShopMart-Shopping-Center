@@ -62,5 +62,5 @@ class Category(Base):
 
 
 # Always stay at the end of the file
-engine = create_engine('sqlite:///Shopmart.db')
+engine = create_engine('sqlite:///app.db')
 Base.metadata.create_all(engine)

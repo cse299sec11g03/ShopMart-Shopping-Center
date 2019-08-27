@@ -21,7 +21,7 @@ app.config['SECRET_KEY'] = 'secret_key'
 
 ##################################
 
-engine = create_engine('sqlite:///buyNsell.db')
+engine = create_engine('sqlite:///app.db')
 Base.metadata.bind = engine
 
 # Creates the session
