@@ -4,18 +4,18 @@
 
 {% include 'jumbotron.html' %}
 
-<section class="py-5">
-    <div class="container">
+<section class=" py-5 ">
+    <div class="container bg-light mt-4 open_sans">
         <div class="row">
             {% for category in categories %}
             <div class="col-3 p-5">
-                <a href="{{ url_for('category_products', category_id=category.ID) }}"><h4>{{ category.Name }}</h4></a>
+                <a class="btn btn-outline-danger" href="{{ url_for('category_products', category_id=category.ID) }}"><h4>{{ category.Name }}</h4></a>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
-<section>
+<section class="bg-info py-5 open_sans">
     <div class="container">
         <div class="row">
             {% for product in all_products %}

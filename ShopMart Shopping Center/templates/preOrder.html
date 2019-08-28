@@ -1,23 +1,32 @@
 {% extends 'layout.html' %}
 {% block content %}
 
-<section class="bg-dark py-5 open_sans">
+<section class="bg-secondary py-5 open_sans">
     <div class="container m-2">
         <div class="row">
             
-            <div class="col-4 text-center float-left mt-4">
-                <img src="{{ url_for('static', filename='images/alibaba.gif') }}">
-                <a class="btn btn-primary" href="https://amazon.com/">Amazon</a>
-            </div>
-
-            <div class="col-4 text-center float-left">
-
+            <div class="col-4 text-center mt-4">
+                
             </div>
                 
-            <div class="col-4 text-center float-left mt-4">
-                <img src="{{ url_for('static', filename='images/alibaba.gif') }}">
+            <div class="col-4 text-center mt-4">
+                <img src="{{ url_for('static', filename='images/amazon.png') }}">
+                <a class="btn btn-primary" href="https://www.amazon.com/">Amazon</a>
+            </div>
+
+            <div class="col-4 text-center mt-4">
+                
+            </div>
+
+            <div class="col-4 text-center mt-4">
+                
+            </div>
+
+            <div class="col-4 text-center mt-4">
+                <img src="{{ url_for('static', filename='images/alibaba.jpg') }}">
                 <a class="btn btn-primary" href="https://www.alibaba.com/?spm=a272h.12395899.scGlobalHomeHeader.3.674d4e30dVl5zr/">Alibaba</a>
             </div>
+
         </div>
     </div>
 </section>
