@@ -21,7 +21,7 @@
             {% for product in all_products %}
             <div class="col-3 p-5">
                 <img class="img-fluid" src="{{ url_for('static', filename='images/product-placeholder.jpg') }}">
-                <h6 class="mt-3">{{ product['product_name'] }}</h6>
+                <h6 class="mt-3 text-danger">{{ product['product_name'] }}</h6>
                 <p><b>$ {{ product['product_price'] }}</b></p>
                 <p>Seller : {{ product['seller'] }}</p>
                 <p class="small">{{ product['product_description'] }}</p>
