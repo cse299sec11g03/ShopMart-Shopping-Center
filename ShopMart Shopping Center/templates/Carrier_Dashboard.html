@@ -2,16 +2,14 @@
 
 {% block content %}
 <section class="py-5">
-  <div class="container">
-    <div class="row-12">
-      <div class="col-4">
-        
-      </div>
-      <div class="col-4">
+    <div class="container">
+        <div class="row">
+      <div class="col-6">
         
       </div>
       
-        <div class="col-3 open_sans">
+      
+        <div class="col-6 open_sans text-center">
                 <h1><i class="fas fa-user-tie"> {{ current_user.FullName }}</i></h1>
                 <p class="small">{{ current_user.UserType }}</p>
                 <a class="" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"> Logout</i></a>
@@ -19,7 +17,8 @@
             
       </div>
     </div>
-  </div>
+
+    </div>
 </section>
 
 <section class="py-5">
