@@ -107,8 +107,7 @@ def login():
 
 
 # User Dashboard
-# Uses the is_teacher() function to identify the user type
-# and redirect to the target dashboard
+
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -121,6 +120,11 @@ def dashboard():
     elif current_user.UserType == 'seller':
         products = session.query(Product).filter_by(Seller=current_user.ID).all()
         return render_template('seller_dashboard.html', products=products)
+
+    if current_user.UserType == 'Carrier':
+        orders = session.query(Order).all()
+        return render_template('Carrier_Dashboard.html',orders=orders)
+
     elif current_user.UserType == 'admin':
         category_form = CategoryForm()
         categories = session.query(Category).all()

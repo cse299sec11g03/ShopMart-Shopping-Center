@@ -8,7 +8,7 @@ from wtforms.fields.html5 import TelField, EmailField
 class SignUpForm(FlaskForm):
     FullName = StringField("",validators=[InputRequired(), Length(min=4, max=30)], render_kw={"placeholder": "Full Name"})
     PhoneNumber = StringField("", validators=[InputRequired(), Length(min=6, max=15)], render_kw={"placeholder": "Phone Number"})
-    UserType= SelectField("", validators=[InputRequired()], choices=[("buyer","buyer"),("seller","seller"),("admin","admin")])
+    UserType= SelectField("", validators=[InputRequired()], choices=[("buyer","buyer"),("seller","seller"),("Carrier","Carrier"),("admin","admin")])
     EmailAddress = EmailField("",validators=[InputRequired(), Email()], render_kw={"placeholder": "Email Address"})
     Password = PasswordField("", validators=[InputRequired(), Length(min=8,max=50)], render_kw={"placeholder": "Password"})
     Submit = SubmitField("Register")
