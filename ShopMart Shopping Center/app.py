@@ -8,25 +8,29 @@ from wtforms.validators import InputRequired, Email, Length
 from forms import *
 from io import BytesIO
 import os
-# Connecting to the database and ORM as known sqlalchemy
+# Connecting to the database and ORM as known as sqlalchemy
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker, scoped_session
 from database import *
 
 import PyPDF2
 
+######################
+#Project Define
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
 
 ##################################
+#database_Create
 
 engine = create_engine('sqlite:///app.db')
 Base.metadata.bind = engine
 
+#####################
 # Creates the session
-session = scoped_session(sessionmaker(bind=engine))
 
+session = scoped_session(sessionmaker(bind=engine))
 
 @app.teardown_request
 def remove_session(ex=None):
@@ -34,33 +38,36 @@ def remove_session(ex=None):
 
 
 ###############################
+#Login_manager_calling
 
-# Login
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-######################################
 
+
+######################################
+#UserDefine
 
 @login_manager.user_loader
 def load_user(user_id):
     user = session.query(Users).filter_by(ID = int(user_id)).first()
     return user
 
-
+#########################
 # Log out
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
-
+#########################
 # Password Reset
 @app.route('/reset_password')
 def reset_password():
     return 'password reset page'
 
 
+##########################
 # Registration System
 @app.route('/register',  methods=['GET', 'POST'])
 def register():
@@ -80,7 +87,7 @@ def register():
 
     return render_template('signup.html', signup_form = signup_form)
 
-
+########################
 # Login System
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -105,8 +112,8 @@ def login():
 
     return render_template('login.html', login_form = login_form, email_subscribe_form = email_subscribe_form)
 
-
-# User Dashboard
+##################################
+#Authenticated User Dashboard
 
 @app.route('/dashboard')
 @login_required
@@ -147,8 +154,9 @@ def dashboard():
         flash('Access Denied')
         return url_for('home')
 
-
+#########################################
 # Add product only allowed for seller
+
 @app.route('/add_product', methods=['GET', 'POST'])
 @login_required
 def add_product():
@@ -174,7 +182,9 @@ def category_products(category_id):
     return render_template('products_by_category.html', products=products)
 
 
-# Add category
+###################################
+# Add category allow only for Admin
+
 @app.route('/add_category', methods=['GET', 'POST'])
 def add_category():
     if current_user.UserType == 'admin':
@@ -189,7 +199,9 @@ def add_category():
     else:
         return 'Not allowed'
 
-# Delete Product
+#############################################
+# Delete category only 
+
 @app.route('/delete_category/<int:category_id>', methods=['GET', 'POST'])
 @login_required
 def delete_category(category_id):
@@ -201,15 +213,17 @@ def delete_category(category_id):
     else:
         return 'Access deined'
 
-
+#####################
 # Product preview
+
 @app.route('/product_preview')
 def product_preview():
     email_subscribe_form = EmailSubscribeForm()
     return render_template('course_preview.html', email_subscribe_form=email_subscribe_form)
 
-
+##############
 # BUY NOW
+
 @app.route('/buy_now/<int:product_id>', methods=['GET', 'POST'])
 def buy_now(product_id):
     order_form = DeliveryAddressForm()
@@ -222,30 +236,39 @@ def buy_now(product_id):
         return redirect(url_for('thank_you'))
     return render_template('buy_now.html',order_form=order_form, product=the_product)
 
-
+######################
 # ABOUT US PAGE
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-
+####################
 # CONTACT US PAGE
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
+###########################
 #thank you after shopping
+
 @app.route('/thank_you')
 def thank_you():
     return render_template('thank_you.html')
+
+############################
+#PreOrder for explore foreign product
 
 @app.route('/preOrder')
 def preOrder():
     return render_template('preOrder.html')
 
+#################
 # Homepage
 @app.route('/')
 def home():
+
     # Find categories form database
     categories = session.query(Category).all()
     products = session.query(Product).all()
@@ -266,8 +289,8 @@ def home():
 
 
 ##################################
-
 # Main Function
+
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True

@@ -28,7 +28,7 @@ class EmailSubscribeForm(FlaskForm):
     Submit = SubmitField("Subscribe")
 
 
-# Add new course form
+# Add new product form
 class ProductForm(FlaskForm):
     ProductName = StringField("",validators=[InputRequired(), Length(min=4, max=100)], render_kw={"placeholder": "Product name"})
     ProductDescription = TextAreaField("",validators=[InputRequired(), Length(min=4, max=300)], render_kw={"placeholder": "Product Description"})
@@ -37,13 +37,13 @@ class ProductForm(FlaskForm):
     Submit = SubmitField("Add product")
 
 
-# Category
+# Add new Category form
 class CategoryForm(FlaskForm):
     Name = StringField("", validators=[InputRequired(), Length(min=2, max=20)], render_kw={"placeholder": "Category name"})
     Submit = SubmitField("Add category")
 
 
-# Delivery address
+# Add new Order 
 class DeliveryAddressForm(FlaskForm):
     Name = StringField("", validators=[InputRequired(), Length(min=2, max=20)], render_kw={"placeholder": "Receiver name"})
     Address = TextAreaField("",validators=[InputRequired(), Length(min=4, max=300)], render_kw={"placeholder": "Address"})

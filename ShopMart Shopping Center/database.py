@@ -28,7 +28,7 @@ class Users(Base, UserMixin):
 
 
 # Course entity defines here
-# Stores course name and description
+
 class Product(Base):
     __tablename__ = 'products'
 
@@ -41,7 +41,7 @@ class Product(Base):
     Users = relationship(Users)
     Date = Column(DateTime, default=datetime.datetime.utcnow)
 
-
+#Order entity defines here
 class Order(Base):
     __tablename__ = 'orders'
 
@@ -53,7 +53,7 @@ class Order(Base):
     Date = Column(DateTime, default=datetime.datetime.utcnow)
 
 
-# Categories
+# Categories entity defines here
 class Category(Base):
     __tablename__ = 'categories'
 
